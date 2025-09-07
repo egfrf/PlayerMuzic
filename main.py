@@ -63,14 +63,14 @@ class MainScreen(Screen, MDBoxLayout):
         pygame.mixer.music.play()
         self.ids.play.icon= 'pause'
         self.ids.slider1.value = 0
-        if self.current_muz >= len(image):
-            self.current_muz =0
-            self.ids.imgangle.source = image[self.current_muz]
+        
+        
+        self.ids.imgangle.source = image[self.current_muz]
             
-            self.ids.imgeea.source = image[self.current_muz]
+        self.ids.imgeea.source = image[self.current_muz]
     
-            self.ids.label.text = muzic[self.current_muz]
-            self.ids.rest.disabled = False
+        self.ids.label.text = muzic[self.current_muz]
+        self.ids.rest.disabled = False
   
         
 
@@ -86,16 +86,15 @@ class MainScreen(Screen, MDBoxLayout):
         pygame.mixer.music.load(muzic[self.current_muz])
         pygame.mixer.music.play()
         self.ids.play.icon= 'pause'
-        self.ids.slider1.value = 0
-        if self.current_muz <= len(image):
-            self.current_muz = 0
-            self.ids.imgangle.source = image[self.current_muz]
-            self.ids.imgeea.source = image[self.current_muz]
+        
+        self.current_muz = 0
+        self.ids.imgangle.source = image[self.current_muz]
+        self.ids.imgeea.source = image[self.current_muz]
             
-            self.ids.label.text = muzic[self.current_muz]
+        self.ids.label.text = muzic[self.current_muz]
             
-            self.ids.label2.text = image[self.current_muz]
-            self.ids.rest.disabled = False
+        self.ids.label2.text = image[self.current_muz]
+        self.ids.rest.disabled = False
         
 
  
