@@ -1,0 +1,246 @@
+#: import ew kivy.uix.effectwidget
+
+
+ 
+
+<MainScreen>:
+    
+    EffectWidget:
+        effects: [ew.VerticalBlurEffect(size=10), ew.HorizontalBlurEffect(size=10)]
+        FitImage:
+            id: imgeea
+            source: 'img_file//basm.png'
+    
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: ['10dp', '130dp', '10dp', '50dp']
+
+        SongCover: 
+            id: sc
+            RotatingImage:
+                id: imgangle
+               
+                angle: sc.angle
+                source: 'img_file//basm.png'
+                size: 250 , 250
+                size_hint: None, None
+                pos_hint: {'center_x': .5, 'center_y': 0.5}
+                radius: [250, ]
+        Widget:
+            height: 0.9
+        MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'y': 0.2}
+            padding: 15
+            Label:
+                id: label
+                text: 'Song Name'
+                bold: True
+                font_size: '18dp'
+                size_hint_y: None
+                height: self.texture_size[1]
+                
+            Label:
+                id: label2
+                text: '2025/8/3'
+                bold: True
+                size_hint_y: None
+                height: self.texture_size[1]
+
+        MDBoxLayout:
+            orientation: 'vertical'  
+            height: 0.5
+            MDSlider:
+                id:slider1
+               
+                value: 0
+                max: 100
+                min: 1
+                size_hint: 0.8, 0.2
+                background_width: '30dp'
+               
+                curson_image: ''
+                curson_size: ('2dp', '2dp')
+                value_track: True
+                pos_hint: {'x': 0.09,'y': -0.2}
+                on_value: root.change_pos(self.value)
+
+
+        MDCard:
+            size_hint: None, None
+            size: 300, 60   
+            pos_hint: {'x': 0.08}    
+            padding: 5
+            radius: 28
+            color: 1,1,1,1
+            MDBoxLayout:
+                pos_hint: {'x': 0.01}
+                spacing: 10
+                
+                Myicon:
+                    id: rest
+                    icon: 'restore' 
+                    on_press: root.rest_muz()
+                    disabled: True
+                             
+                Myicon:
+                    icon: 'skip-previous'
+                    on_press: root.prev_muz()
+                    on_press: sc.play_dor()
+
+
+                Myicon:
+                    icon: 'play'
+                    id: play
+                    on_press:
+                        root.but_play() 
+                    on_press: 
+                        sc.play_dor() if self.icon == 'play' else sc.stop_dor()
+                      
+                        
+                            
+                Myicon
+                    id: next
+                    icon: 'skip-next'
+                    on_press: root.next_muz()
+                    on_press: sc.play_dor()
+
+
+                Myicon
+                    icon: 'playlist-music-outline'
+                    on_press: root.goto_menu(self)
+
+
+        Widget:
+            size_hint_y: 0.2
+               
+<Myicon@MDIconButton>:
+
+    color: [.7,0,0,1]
+   
+    size_hint: None, None
+    
+    theme_text_color: 'Custom'
+    text_color: [0,0,0,1]
+   
+    font_size: 25
+
+    
+
+                
+
+<RotatingImage@FitImage>:
+    angle: 50
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: root.angle
+            origin: self.center
+
+    canvas.after:
+        PopMatrix
+
+
+
+
+        
+<MenuMusic>:
+    canvas:
+        Rectangle:
+            source: 'img_file//karbala.png'
+            size: self.size
+            pos: self.pos
+
+
+    MDTopAppBar:
+        id: toop
+        pos_hint: {'top': 1}
+        height: 20
+        md_bg_color: 0,0,1,0.4 
+        elevation: 10
+
+
+
+
+        MDBoxLayout:
+            spacing: 5
+            GridLayout: 
+                cols: 3
+                padding: 10,-30,20,50
+               
+          
+        
+                MDIconButton:
+                    icon:'arrow-left' 
+                    theme_text_color: 'Custom'
+                    text_color: 'white'
+                    on_press: root.goto_amin()
+                    
+               
+             
+
+                MDTextField:
+                    mode: 'fill'
+                
+                    hint_text: "Search for your song"
+                    theme_text_color: "Custom"
+                    fill_color_normal: 1,0,0,.2
+                    size_hint_y: 0.2
+                    text_color_normal: 'red'
+                    text_color: 1,0,0,1
+
+                    
+                Widget:
+                    size_hint: 0.05, 0.1
+    MDCard:
+        pos_hint: {'top': 0.1}
+        id: toop_down
+        height: 200
+        y: self.parent.height - self.height - 60
+          
+        md_bg_color: 0,0,1,0.3
+ 
+        GridLayout:
+            padding: 10, 10,150,15
+            spacing: 30
+            cols: 5
+            Myicon:
+                icon: 'restore'
+                icon_color: 1,1,1,1
+                
+            Myicon:
+                icon: 'skip-previous'
+                icon_color: 1,1,1,1
+
+            Myicon:
+                id: play_lis
+                icon: 'play-circle-outline'
+                icon_color: 1,1,1,1
+                on_press: root.play_lis()
+
+            Myicon:
+                icon: 'skip-next'
+                icon_color: 1,1,1,1
+                
+            Myicon:
+                id: herd
+                icon: 'heart'
+                icon_color: 1,1,1,1
+                on_press: root.color_herd()
+                
+
+                
+        Widget:
+            size_hint: 0.1, 0.8
+           
+
+<Myicon@MDIconButton>:
+    
+
+   
+
+
+        
+          
+   
