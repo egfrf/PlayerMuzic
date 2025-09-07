@@ -36,12 +36,9 @@ Experience a clean and modern *Music Player* with the following features:
 ---
 
 
-
-
----
-
 I can also make a full HTML version with colors, backgrounds, and hover effects to make it look like a real music app interface.
 
 Do you want me to do that?
+
 
 
